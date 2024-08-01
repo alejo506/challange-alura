@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* font size: 32px -> 25px */
+/* buttons text: 24px -> 17px */
+
+:root{
+    --primary-color: #0A3871;
+    --second-color: #495057;
+    --third-color: #D8DFE8;
+
+    --small-letter-size: 0.8rem;
+    --medium-letter-size: 1.1rem;
+
+
+
+
+}
+
+
+/* Aplica box-sizing: border-box a todos los elementos */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f3f5fc;
+    /* width: 100%;
+    height: 100%; */
+}
+
+
+
+header{
+    width: 55%;
+    position: absolute;
+    padding: 1.2rem;
+}
+
+header img{
+    height: 2.5rem;
+    width: 7.5rem;
+}
+
+.main {
+    display: flex;
+    gap: 1rem;
+    height: auto;
+    justify-content: center;
+    padding: 1.2rem;
+}
+
+.main__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: auto;
+    padding: 7rem 3rem 3rem 7rem;
+    width: 70%;
+}
+
+.main__content__text {
+    background-color: #f3f5fc;
+    color: #0A3871;
+    font: 400 1.56rem "Inter", sans-serif;
+    height: 17rem;
+    border: none; /* Quita los bordes */
+    outline: none; /* Opcional: quita el borde del foco */
+    line-height: 2.4rem;
+    resize: none;
+    width: 100%;
+    overflow: auto;
+}
+
+.main__content__span {
+    align-content: center;
+    color: #495057;
+    font: 400 var(--small-letter-size) "Inter", sans-serif;
+    height: 3.2rem;
+}
+
+.main__content__span img {
+    height: 0.75rem;
+    width: 0.75rem;
+}
+
+/* Buttons container  */
+.main__content__buttons {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+/* Both buttons */
+.main__content__buttons button {
+    align-content: center;
+    border-radius: 1.5rem;
+    font: 400 var(--medium-letter-size) "Inter", sans-serif;
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Individual button */
+.main__content__buttons button:nth-child(1) {
+    background-color: #0A3871;
+    color: #FFFFFF;
+}
+
+.main__content__buttons button:nth-child(2) {
+    color: #0A3871;
+    background-color: #D8DFE8;
+    border-color: #0A3871;
+    border-width: 1px;
+}
+
+/* Hover */
+.main__content__buttons button:nth-child(1):hover {
+    background-color: #e6f0fa;
+    color: #0A3871;
+}
+
+.main__content__buttons button:nth-child(2):hover {
+    color: #0A3871;
+    background-color: #e6f0fa;
+    
+}
+
+
+/* ------------------------------------------------------------- */
+
+
+.main__result {
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 40%;
+    padding: 2rem 1.9rem;
+    gap: 14.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 1.5rem 2rem -0.5rem #00000014;
+}
+
+.main__result__magnifyingglass {
+    height: 50%;
+    width: 80%;
+}
+
+.main__result__messagetitle {
+    font: 700 var(--medium-letter-size) "Inter", sans-serif;
+    color: #343A40;
+    height: auto;
+}
+
+.main__result__messagetext{
+    font: 400 var(--small-letter-size) "Inter", sans-serif;
+    text-align: center;
+    color: #495057;
+}
+
+.main__result__text{
+    font: 400 var(--medium-letter-size) "Inter", sans-serif;
+    color: #495057;
+    line-height: 2;
+    height: 10rem;
+    width: 100%;
+    overflow: auto;
+    text-align: left;
+}
+
+.main__result__button{
+    color: #0A3871;
+    background-color: #D8DFE8;
+    border-color: #0A3871;
+    border-width: 1px;
+    align-content: center;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    width: 73%;
+    font: 400 var(--medium-letter-size) "Inter", sans-serif;
+}
+
+.main__result__button:hover {
+    color: #0A3871;
+    background-color: #e6f0fa;
+    
+}
+
+
+
+/* 1. Estilos para móviles pequeños */
+@media (max-width: 474px) {
+    header{
+        position: static;
+        width: 100%;
+        padding: 1.2rem;
+    }
+
+    .main{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+
+    }
+
+    .main__content {
+        padding: 0%;
+        width: 100%;
+        height: 33rem;
+        gap: 1rem;
+    }
+
+    .main__content__text {
+        text-align: left;
+        min-height: auto;
+        
+    }
+
+    .main__content__buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main__result {
+        gap:2rem;
+        padding: 2rem 1rem;
+        width: 100%;   
+    }
+
+    .main__result__button{
+        width: 100%;        
+    }
+}
+
+/* 2. Estilos para móviles medianos */
+@media (min-width: 475px) and (max-width: 1048px) {
+    header{
+        position: static;
+        width: 100%;
+        padding: 1.2rem;
+    }
+
+    .main{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 3rem;
+
+    }
+
+    .main__content {
+        padding: 0%;
+        width: 100%;
+        gap: 1.5rem;
+        height: auto;
+    }
+
+    .main__content__text {
+        height: auto;
+        overflow: auto;
+        
+    }
+
+    .main__content__buttons {
+        display: flex;
+    }
+
+    .main__result {
+        gap: 0;
+        padding: 2rem;
+        width: 100%;   
+    }
+
+    .main__result__button{
+        width: 90%;        
+    }
+    
+}
+
+
+
+/* 4. Estilos para tabletas en horizontal y pantallas más grandes */
+/* @media (min-width: 1025px) {
+
+} */
