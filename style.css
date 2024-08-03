@@ -235,7 +235,6 @@ header img {
 .footer {
     position: absolute;
     left: 0;
-    bottom: 0;
     width: 100%;
     background-color: var(--primary-color);
     color: var(--third-color);
