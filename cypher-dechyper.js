@@ -101,8 +101,7 @@ function cleanFields() {
 // Copiar texto al portapapeles
 function copyText() {
     navigator.clipboard.writeText(textToCopy.textContent)
-        .then(() => toastr.success('The text has been copied to the clipboard.', 'Copied!')
-             inputTxt.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+        .then(() => toastr.success('The text has been copied to the clipboard.', 'Copied!'))
         .catch(err => {
             toastr.error('Something went wrong!', 'Error');
             console.error('Error copying text: ', err);
