@@ -50,6 +50,7 @@ header img {
     height: auto;
     justify-content: center;
     padding: 1.2rem;
+    position: relative;
 }
 
 .main__content {
