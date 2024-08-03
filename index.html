@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Challange</title>
+    <!--------------------------- toastr ------------------------------>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body>
@@ -16,24 +20,34 @@
     <main class="main">
         <!--  Enter text encription and buttons                        -->
         <section class="main__content">
-            <textarea class="main__content__text" type="text" placeholder="Enter the text here"></textarea>
-            <span class="main__content__span"><img src="assets/exclamation.png" alt=""> Only accept lowercase letters
+            <textarea id="txtcontent" class="main__content__text" type="text"
+                placeholder="Enter the text here"></textarea>
+            <span id="spanMessage" class="main__content__span"><img src="assets/exclamation.png" alt=""> Only accept lowercase letters
                 and no accents are allowed</span>
             <section class="main__content__buttons">
-                <button>Encrypt</button>
-                <button>Decrypt</button>
+                <button id="bttnCypher" >Encrypt</button>
+                <button id="bttnDecypher" >Decrypt</button>
             </section>
         </section>
         <!--  Result                      -->
         <section class="main__result">
-            <!-- <img class="main__result__magnifyingglass" src="assets/man.png" alt="Magnifying glass"> -->
-            <!-- <h1 class="main__result__messagetitle">No message was found</h1> -->
-            <!-- <p class="main__result__messagetext">Ingresa el texto que desees encriptar o desencriptar</p> -->
-            <p readonly class="main__result__text">Lorem Ipsum est simplement du faux texte employé dans la composition
-                et la mise en page avant impression.</p>
-                <button class="main__result__button">Copy</button>
+            <!-- <img id="imgresult" class="main__result__magnifyingglass" src="assets/man.png" alt="Magnifying glass"> -->
+            
+            <img id="imgresult1" class="main__result__magnifyingglass" src="assets/man.svg" alt="">
+            <img id="imgresult2" class="img_diamond" src="assets/diamond.svg" alt="">
+            <img id="imgresult3" src="assets/circles.svg" class="img_circles" alt="">
+
+            <h1 id="titlresult" class="main__result__messagetitle">No message was found</h1>
+            <p id="messresult" class="main__result__messagetext">Ingresa el texto que desees encriptar o desencriptar</p>
+            <p id="textToCopy" readonly class="main__result__text" style="display: none;"></p>
+            <button id="bttncopy" class="main__result__button" style="display: none;">Copy</button>
         </section>
     </main>
+    <footer class="footer">
+            <p>Copyright 2024 ©</p>
+    </footer>
+    <script src="cypher-dechyper.js"></script>
+    <!-- <script src="test.js"></script> -->
 </body>
 
 </html>

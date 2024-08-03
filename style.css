@@ -2,17 +2,13 @@
 /* font size: 32px -> 25px */
 /* buttons text: 24px -> 17px */
 
-:root{
+:root {
     --primary-color: #0A3871;
     --second-color: #495057;
     --third-color: #D8DFE8;
 
     --small-letter-size: 0.8rem;
     --medium-letter-size: 1.1rem;
-
-
-
-
 }
 
 
@@ -25,24 +21,28 @@
     padding: 0;
 }
 
-body {
+body,
+html {
     background-color: #f3f5fc;
-    /* width: 100%;
-    height: 100%; */
+    width: 100%;
+    height: 100%;
 }
 
+/* --------------------------- HEADER ---------------------------- */
 
-
-header{
+header {
     width: 55%;
     position: absolute;
     padding: 1.2rem;
 }
 
-header img{
+header img {
     height: 2.5rem;
     width: 7.5rem;
 }
+
+/* --------------------------- CONTENT ---------------------------- */
+
 
 .main {
     display: flex;
@@ -55,19 +55,21 @@ header img{
 .main__content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     height: auto;
-    padding: 7rem 3rem 3rem 7rem;
+    padding: 7rem 3rem 0 7rem;
     width: 70%;
 }
 
 .main__content__text {
     background-color: #f3f5fc;
-    color: #0A3871;
+    color: var(--primary-color);
     font: 400 1.56rem "Inter", sans-serif;
     height: 17rem;
-    border: none; /* Quita los bordes */
-    outline: none; /* Opcional: quita el borde del foco */
+    border: none;
+    /* Quita los bordes */
+    outline: none;
+    /* Opcional: quita el borde del foco */
     line-height: 2.4rem;
     resize: none;
     width: 100%;
@@ -76,9 +78,20 @@ header img{
 
 .main__content__span {
     align-content: center;
-    color: #495057;
+    color: var(--second-color);
     font: 400 var(--small-letter-size) "Inter", sans-serif;
     height: 3.2rem;
+}
+
+.spanError {
+    align-content: center;
+    color: #d82c0a;
+    font: 400 var(--small-letter-size) "Inter", sans-serif;
+    height: 3.2rem;
+    display: inline-block;
+    /* Necesario para que transform funcione correctamente con texto */
+    animation: enlarge 1s ease-in-out;
+    /* Aplica la animación durante 1 segundo */
 }
 
 .main__content__span img {
@@ -89,7 +102,7 @@ header img{
 /* Buttons container  */
 .main__content__buttons {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     width: 100%;
 }
 
@@ -104,50 +117,74 @@ header img{
 
 /* Individual button */
 .main__content__buttons button:nth-child(1) {
-    background-color: #0A3871;
+    background-color: var(--primary-color);
     color: #FFFFFF;
 }
 
 .main__content__buttons button:nth-child(2) {
-    color: #0A3871;
-    background-color: #D8DFE8;
-    border-color: #0A3871;
+    color: var(--primary-color);
+    background-color: var(--third-color);
+    border-color: var(--primary-color);
     border-width: 1px;
 }
 
 /* Hover */
 .main__content__buttons button:nth-child(1):hover {
     background-color: #e6f0fa;
-    color: #0A3871;
+    color: var(--primary-color);
 }
 
 .main__content__buttons button:nth-child(2):hover {
-    color: #0A3871;
+    color: var(--primary-color);
     background-color: #e6f0fa;
-    
+
 }
 
 
-/* ------------------------------------------------------------- */
+/* --------------------------RESULT----------------------------------- */
 
 
 .main__result {
-    justify-content: center;
     align-items: center;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     height: auto;
     width: 40%;
-    padding: 2rem 1.9rem;
-    gap: 14.5rem;
+    padding: 1rem 1.9rem 1rem 1.9rem;
+    gap: 2.6rem;
     border-radius: 2rem;
     box-shadow: 0 1.5rem 2rem -0.5rem #00000014;
+    position: relative;
+
+    /* otros */
+    justify-content: flex-end;
 }
 
 .main__result__magnifyingglass {
-    height: 50%;
-    width: 80%;
+    height: auto;
+    width: auto;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+}
+
+.img_diamond{
+    position: absolute;
+    width: auto;
+    height: auto;
+    z-index: 2;
+    animation: movement 2s ease-in-out infinite;
+    top: 1.5rem;
+}
+
+.img_circles{
+    position: absolute;
+    width: auto;
+    height: auto;
+    z-index: 2;
+    animation: circular-movement 3.5s ease-in-out infinite;
+    top: 2rem;
 }
 
 .main__result__messagetitle {
@@ -156,56 +193,72 @@ header img{
     height: auto;
 }
 
-.main__result__messagetext{
+.main__result__messagetext {
     font: 400 var(--small-letter-size) "Inter", sans-serif;
     text-align: center;
-    color: #495057;
+    color: var(--second-color);
+    margin-bottom: 4rem;
 }
 
-.main__result__text{
+.main__result__text {
     font: 400 var(--medium-letter-size) "Inter", sans-serif;
-    color: #495057;
+    color: var(--second-color);
     line-height: 2;
-    height: 10rem;
+    height: 100%;
     width: 100%;
     overflow: auto;
     text-align: left;
 }
 
-.main__result__button{
-    color: #0A3871;
-    background-color: #D8DFE8;
-    border-color: #0A3871;
+.main__result__button {
+    color: var(--primary-color);
+    background-color: var(--third-color);
+    border-color: var(--primary-color);
     border-width: 1px;
     align-content: center;
     border-radius: 1.5rem;
     padding: 1rem;
     width: 73%;
     font: 400 var(--medium-letter-size) "Inter", sans-serif;
+    /* position: absolute; */
+    bottom: 1rem;
 }
 
 .main__result__button:hover {
-    color: #0A3871;
+    color: var(--primary-color);
     background-color: #e6f0fa;
-    
+
 }
 
+/* --------------------------- FOOTER ---------------------------- */
 
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--third-color);
+    text-align: center;
+    padding: 0.5rem;
+    font: 400 var(--small-letter-size) "Inter", sans-serif;
+}
+
+/* --------------------------- QUERIES ---------------------------- */
 
 /* 1. Estilos para móviles pequeños */
 @media (max-width: 474px) {
-    header{
+    header {
         position: static;
         width: 100%;
         padding: 1.2rem;
     }
 
-    .main{
+    .main {
         display: flex;
         flex-direction: column;
         width: 100%;
         gap: 0;
-
     }
 
     .main__content {
@@ -218,7 +271,8 @@ header img{
     .main__content__text {
         text-align: left;
         min-height: auto;
-        
+        padding: 0.5rem;
+
     }
 
     .main__content__buttons {
@@ -227,30 +281,59 @@ header img{
     }
 
     .main__result {
-        gap:2rem;
-        padding: 2rem 1rem;
-        width: 100%;   
+        gap: 2rem;
+        padding: 0;
+        width: 100%;
+        height: 24rem;
     }
 
-    .main__result__button{
-        width: 100%;        
+    .main__result__magnifyingglass{
+        width: 80%;
+        height: 55%;
+    }
+    .img_circles{
+        width: 70%;
+        height: 40%;
+    }
+
+    .img_diamond{
+        width: 70%;
+        height: 60%;
+        top: 0rem;
+    }
+
+    .main__result__text{
+        padding: 1rem;
+    }
+
+    .main__result__messagetext {
+        margin-bottom: 3rem;
+    }
+
+    .main__result__button {
+        width: 100%;
+    }
+
+    .footer {
+        position: relative;
     }
 }
 
 /* 2. Estilos para móviles medianos */
 @media (min-width: 475px) and (max-width: 1048px) {
-    header{
+    header {
         position: static;
         width: 100%;
-        padding: 1.2rem;
+        padding: 1rem;
     }
 
-    .main{
+    .main {
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 3rem;
-
+        gap: 1.5rem;
+        height: 100%;
+        justify-content: flex-end;
     }
 
     .main__content {
@@ -260,31 +343,114 @@ header img{
         height: auto;
     }
 
+    .main__result__magnifyingglass{
+        width: 40%;
+        height: 70%;
+    }
+    .img_circles{
+        width: 30%;
+        height: 60%;
+    }
+
+    .img_diamond{
+        width: 40%;
+        height: 100%;
+        top: 0;
+
+    }
+    
     .main__content__text {
-        height: auto;
+        height: 10rem;
         overflow: auto;
         
     }
 
-    .main__content__buttons {
-        display: flex;
-    }
-
-    .main__result {
-        gap: 0;
-        padding: 2rem;
-        width: 100%;   
-    }
-
-    .main__result__button{
-        width: 90%;        
+    .main__content__span {
+        height: auto;
     }
     
+    .main__content__buttons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    
+    .main__result {
+        gap: 10px;
+        padding: 0.5rem;
+        /* justify-content: flex-end; */
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .main__result__messagetext {
+
+        justify-content: flex-end;
+        margin-bottom: 0px;
+    }
+
+    .main__result__text{
+        height: 100%;
+    }
+
+
+    .main__result__button {
+        width: 90%;
+    }
+
+    .footer {
+        position: relative;
+    }
+}
+
+/* Animacion para spanError*/
+@keyframes enlarge {
+    0% {
+        font-size: var(--small-letter-size);
+        /* Tamaño original */
+    }
+
+    50% {
+        font-size: 0.9rem;
+        /* Tamaño grande */
+    }
+
 }
 
 
 
-/* 4. Estilos para tabletas en horizontal y pantallas más grandes */
-/* @media (min-width: 1025px) {
+@keyframes movement {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Ajusta la altura del movimiento */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
 
-} */
+
+
+
+@keyframes circular-movement {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(2px, -2px);
+    }
+    50% {
+        transform: translate(0, -4px);
+    }
+    75% {
+        transform: translate(-2px, -2px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
