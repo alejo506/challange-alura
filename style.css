@@ -93,7 +93,7 @@ header img {
     height: 3.2rem;
     display: inline-block;
     /* Necesario para que transform funcione correctamente con texto */
-    animation: enlarge 1s ease-in-out;
+    animation: enlarge_span_message 2s ease-in-out;
     /* Aplica la animación durante 1 segundo */
 }
 
@@ -186,7 +186,7 @@ header img {
 .main__result__sectionImg__imgDiamond {
     position: relative;
     z-index: 2;
-    animation: movement 2s ease-in-out infinite;
+    animation: movement_diamond 2s ease-in-out infinite;
     top: 2.5rem;
 }
 
@@ -346,21 +346,21 @@ header img {
 /* --------------------------- ANIMACIONES ---------------------------- */
 
 /* Animacion para spanError*/
-@keyframes enlarge {
+@keyframes enlarge_span_message {
     0% {
         font-size: var(--small-letter-size);
         /* Tamaño original */
     }
 
     50% {
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         /* Tamaño grande */
     }
 
 }
 
 
-@keyframes movement {
+@keyframes movement_diamond {
     0% {
         transform: translateY(0);
     }
@@ -397,22 +397,3 @@ header img {
         transform: translate(0, 0);
     }
 }
-
-
-/* @keyframes circular-movement {
-    0% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(8px, -8px);
-    }
-    50% {
-        transform: translate(-4, -8px);
-    }
-    75% {
-        transform: translate(-6px, -6px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-} */
