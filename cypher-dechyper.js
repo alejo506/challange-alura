@@ -35,7 +35,7 @@ bttnCypher.addEventListener("click", cypherText);
 bttnDecypher.addEventListener("click", decypherText);
 
 inputTxt.addEventListener("input", () => {
-    const text = inputTxt.value; 
+    const text = inputTxt.value;
     const valid = /^[a-z ]*$/.test(text);
 
     bttnCypher.disabled = !valid;

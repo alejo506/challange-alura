@@ -13,42 +13,40 @@
 </head>
 
 <body>
-
     <header>
-        <img src="assets/Picture1.png" alt="">
+        <img src="assets/logo.png" alt="">
     </header>
     <main class="main">
-        <!--  Enter text encription and buttons                        -->
+        <!--  Enter text encription and buttons   -->
         <section class="main__content">
             <textarea id="txtcontent" class="main__content__text" type="text"
                 placeholder="Enter the text here"></textarea>
-            <span id="spanMessage" class="main__content__span"><img src="assets/exclamation.png" alt=""> Only accept lowercase letters
+            <span id="spanMessage" class="main__content__span"><img src="assets/exclamation.png" alt=""> Only accept
+                lowercase letters
                 and no accents are allowed</span>
             <section class="main__content__buttons">
-                <button id="bttnCypher" >Encrypt</button>
-                <button id="bttnDecypher" >Decrypt</button>
+                <button id="bttnCypher">Encrypt</button>
+                <button id="bttnDecypher">Decrypt</button>
             </section>
         </section>
         <!--  Result                      -->
         <section class="main__result">
-            <!-- <img id="imgresult" class="main__result__magnifyingglass" src="assets/man.png" alt="Magnifying glass"> -->
             <div class="main__result__sectionImg">
-                <img id="imgresult1" class="main__result__sectionImg__imgMan" src="assets/man.svg" alt="">
-                <img id="imgresult3" class="main__result__sectionImg__imgCircles" src="assets/circles.svg" alt="">
-                <img id="imgresult2" class="main__result__sectionImg__imgDiamond" src="assets/diamond.svg" alt="">
+                <img id="imgresult1" class="main__result__sectionImg__imgMan" src="assets/svg/man.svg" alt="">
+                <img id="imgresult3" class="main__result__sectionImg__imgCircles" src="assets/svg/circles.svg" alt="">
+                <img id="imgresult2" class="main__result__sectionImg__imgDiamond" src="assets/svg/diamond.svg" alt="">
             </div>
-
             <h1 id="titlresult" class="main__result__messagetitle">No message was found</h1>
-            <p id="messresult" class="main__result__messagetext">Ingresa el texto que desees encriptar o desencriptar</p>
+            <p id="messresult" class="main__result__messagetext">Ingresa el texto que desees encriptar o desencriptar
+            </p>
             <p id="textToCopy" readonly class="main__result__text" style="display: none;"></p>
             <button id="bttncopy" class="main__result__button" style="display: none;">Copy</button>
         </section>
     </main>
     <footer class="footer">
-            <p>Copyright 2024 ©</p>
+        <p>Copyright 2024 ©</p>
     </footer>
     <script src="cypher-dechyper.js"></script>
-    <!-- <script src="test.js"></script> -->
 </body>
 
 </html>
