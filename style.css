@@ -22,9 +22,9 @@
     padding: 0;
 }
 
-body,
-html {
+body{
     background-color: #f3f5fc;
+    /* position: relative; */
 }
 
 
@@ -49,7 +49,7 @@ header img {
     gap: 1rem;
     justify-content: center;
     padding: 1.2rem;
-    min-height: 564px;
+    min-height: 100vh; 
 }
 
 .main__content {
@@ -234,6 +234,8 @@ header img {
     text-align: center;
     padding: 0.5rem;
     font: 400 var(--small-letter-size) "Inter", sans-serif;
+    align-content: center;
+    justify-items: center;
 }
 
 

@@ -20,9 +20,9 @@ const vowels = {
 const messageResult = document.getElementById("messresult");
 const spanMessage = document.getElementById("spanMessage");
 const titleResult = document.getElementById("titlresult");
-let imageResult1 = document.getElementById("imgresult1");
-let imageResult2 = document.getElementById("imgresult2");
-let imageResult3 = document.getElementById("imgresult3");
+let imgMan = document.getElementById("imgMan");
+let imgCircles = document.getElementById("imgCircles");
+let imgDiamond = document.getElementById("imgDiamond");
 const textToCopy = document.getElementById("textToCopy");
 const bttnCopy = document.getElementById("bttncopy");
 const bttnCypher = document.getElementById("bttnCypher");
@@ -82,9 +82,9 @@ function showCypherText(word) {
     if (!word.trim()) {
         defaultPage();
     } else {
-        imageResult1.style.display = "none";
-        imageResult2.style.display = "none";
-        imageResult3.style.display = "none";
+        imgMan.style.display = "none";
+        imgCircles.style.display = "none";
+        imgDiamond.style.display = "none";
         titleResult.style.display = "none";
         messageResult.style.display = "none";
         textToCopy.style.display = "block";
@@ -112,9 +112,9 @@ function copyText() {
 function defaultPage() {
     cleanFields();
     bttnCopy.style.display = "none";
-    imageResult1.style.display = "block";
-    imageResult2.style.display = "block";
-    imageResult3.style.display = "block";
+    imgMan.style.display = "block";
+    imgCircles.style.display = "block";
+    imgDiamond.style.display = "block";
     titleResult.style.display = "block";
     messageResult.style.display = "block";
 }
