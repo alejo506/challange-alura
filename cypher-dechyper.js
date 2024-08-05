@@ -17,12 +17,14 @@ const vowels = {
 };
 
 // Referencias a elementos del DOM
+const header = document.getElementById("header");
+const footer = document.getElementById("footer");
 const messageResult = document.getElementById("messresult");
 const spanMessage = document.getElementById("spanMessage");
 const titleResult = document.getElementById("titlresult");
-let imgMan = document.getElementById("imgMan");
-let imgCircles = document.getElementById("imgCircles");
-let imgDiamond = document.getElementById("imgDiamond");
+const imgMan = document.getElementById("imgMan");
+const imgCircles = document.getElementById("imgCircles");
+const imgDiamond = document.getElementById("imgDiamond");
 const textToCopy = document.getElementById("textToCopy");
 const bttnCopy = document.getElementById("bttncopy");
 const bttnCypher = document.getElementById("bttnCypher");
@@ -36,7 +38,7 @@ bttnDecypher.addEventListener("click", decypherText);
 
 inputTxt.addEventListener("input", () => {
     const text = inputTxt.value;
-    const valid = /^[a-z ]*$/.test(text);
+    const valid = /^[a-z \n]*$/.test(text);
 
     bttnCypher.disabled = !valid;
     bttnDecypher.disabled = !valid;
@@ -56,7 +58,8 @@ function cypherText() {
         vowels[letter] || letter
     );
     const cypherWord = cypherArray.join("");
-
+    
+    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */ 
     showCypherText(cypherWord);
     cleanFields();
 }
@@ -73,6 +76,7 @@ function decypherText() {
     for (const [key, value] of Object.entries(vowels)) {
         inputWord = inputWord.replace(new RegExp(value, 'g'), key);
     }
+    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */ 
     showCypherText(inputWord);
     cleanFields();
 }
@@ -106,7 +110,23 @@ function copyText() {
             toastr.error('Something went wrong!', 'Error');
             console.error('Error copying text: ', err);
         });
+
+    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
+    if (window.innerWidth <= 768) { 
+        header.scrollIntoView({ behavior: 'smooth' });
+    }
 }
+
+
+function scrollToFooter() {
+    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
+    if (window.innerWidth <= 768) { // Puedes ajustar el valor según tus necesidades
+        footer.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+
+
 
 // Restablecer la página al estado predeterminado
 function defaultPage() {
