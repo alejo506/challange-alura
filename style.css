@@ -126,6 +126,13 @@ header img {
     border-width: 1px;
 }
 
+.main__content__buttons button:nth-child(3) {
+    color: #FFFFFF;
+    background-color: #cc1313;
+    border-color: var(--third-color);
+    border-width: 1px;
+}
+
 /* Hover */
 .main__content__buttons button:nth-child(1):hover {
     background-color: #e6f0fa;
@@ -138,6 +145,18 @@ header img {
 
 }
 
+.main__content__buttons button:nth-child(3):hover {
+    color: var(--primary-color);
+    background-color: #e6f0fa;
+
+}
+
+.main__content__buttons > button:disabled {
+    background-color: #ccc; /* Color de fondo para el botón deshabilitado */
+    color: #666; /* Color del texto para el botón deshabilitado */
+    cursor: not-allowed; /* Cursor que indica que el botón no está disponible */
+    border: 1px solid #999; /* Borde para el botón deshabilitado */
+}
 
 /* --------------------------RESULT----------------------------------- */
 
@@ -152,6 +171,7 @@ header img {
     border-radius: 2rem;
     box-shadow: 0 1.5rem 2rem -0.5rem #00000014;
     justify-content: start;
+    text-align: center;
 }
 
 .main__result__text {
@@ -164,7 +184,7 @@ header img {
     text-align: left;
 }
 
-.main__result__sectionImg {
+.main__result__defaultResult {
     position: relative;
     height: auto;
     width: auto;
@@ -202,6 +222,7 @@ header img {
     color: var(--second-color);
     margin-top: 2rem;
 }
+
 
 .main__result__button {
     margin-bottom: 1rem;
@@ -253,6 +274,7 @@ header img {
 
     .main {
         display: flex;
+        gap: 4rem;
         flex-direction: column;
         width: 100%;
         padding: 0.5rem;

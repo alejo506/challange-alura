@@ -27,19 +27,20 @@
             <section class="main__content__buttons">
                 <button id="bttnCypher">Encrypt</button>
                 <button id="bttnDecypher">Decrypt</button>
+                <button id="bttnResetPage">Reset</button>
             </section>
         </section>
         <!--  Result                      -->
         <section class="main__result">
-            <div class="main__result__sectionImg">
-                <img id="imgMan" class="main__result__sectionImg__imgMan" src="assets/svg/man.svg" alt="">
-                <img id="imgCircles" class="main__result__sectionImg__imgCircles" src="assets/svg/circles.svg" alt="">
-                <img id="imgDiamond" class="main__result__sectionImg__imgDiamond" src="assets/svg/diamond.svg" alt="">
+            <div class="main__result__defaultResult" id="defaultResult">
+                <img class="main__result__sectionImg__imgMan" src="assets/svg/man.svg" alt="">
+                <img class="main__result__sectionImg__imgCircles" src="assets/svg/circles.svg" alt="">
+                <img class="main__result__sectionImg__imgDiamond" src="assets/svg/diamond.svg" alt="">
+                <h1 class="main__result__messagetitle">No message was found</h1>
+                <p class="main__result__messagetext">Enter the text you wish to encrypt or decrypt
+                </p>
             </div>
-            <h1 id="titlresult" class="main__result__messagetitle">No message was found</h1>
-            <p id="messresult" class="main__result__messagetext">Enter the text you wish to encrypt or decrypt
-            </p>
-            <p id="textToCopy" readonly class="main__result__text" style="display: none;"></p>
+            <p id="showResult" readonly class="main__result__text" style="display: none;"></p>
             <button id="bttncopy" class="main__result__button">Copy</button>
             <button id="bttnpaste" class="main__result__button" style="display: none;">Paste</button>
         </section>

@@ -19,36 +19,34 @@ const vowels = {
 // Referencias a elementos del DOM
 const header = document.getElementById("header");
 const footer = document.getElementById("footer");
-const messageResult = document.getElementById("messresult");
+const inputTxt = document.getElementById("txtcontent");
 const spanMessage = document.getElementById("spanMessage");
-const titleResult = document.getElementById("titlresult");
-const imgMan = document.getElementById("imgMan");
-const imgCircles = document.getElementById("imgCircles");
-const imgDiamond = document.getElementById("imgDiamond");
-const textToCopy = document.getElementById("textToCopy");
-const bttnCopy = document.getElementById("bttncopy");
-const bttnPaste = document.getElementById("bttnpaste");
 const bttnCypher = document.getElementById("bttnCypher");
 const bttnDecypher = document.getElementById("bttnDecypher");
-const inputTxt = document.getElementById("txtcontent");
+const defaultResult = document.getElementById("defaultResult");
+const showResult = document.getElementById("showResult");
+const bttnCopy = document.getElementById("bttncopy");
+const bttnPaste = document.getElementById("bttnpaste");
+const bttnResetPage = document.getElementById("bttnResetPage");
+
+/*Inicializa el boton (deshabilitado) */
+bttnResetPage.disabled = true;
 
 // Asignar funciones a eventos
-bttnCopy.addEventListener('click', copyText);
-bttnPaste.addEventListener("click", pasteText);
 bttnCypher.addEventListener("click", cypherText);
 bttnDecypher.addEventListener("click", decypherText);
-
+bttnCopy.addEventListener('click', copyText);
+bttnPaste.addEventListener("click", pasteText);
+bttnResetPage.addEventListener("click", resetPage);
+// Toma lo que se digita para validar
 inputTxt.addEventListener("input", () => {
     const text = inputTxt.value;
     const valid = /^[a-z \n]*$/.test(text);
 
-    bttnCypher.disabled = !valid;
+    bttnCypher.disabled = !valid; /*Deshabilita el boton */
     bttnDecypher.disabled = !valid;
     spanMessage.classList.toggle("spanError", !valid);
 });
-
-// Agrega el evento click al botón y llama a la función
-// document.getElementById('pasteButton').addEventListener('click', pasteText);
 
 
 // Función de cifrado
@@ -64,8 +62,8 @@ function cypherText() {
         vowels[letter] || letter
     );
     const cypherWord = cypherArray.join("");
-    
-    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */ 
+
+    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
     showCypherText(cypherWord);
     cleanFields();
 }
@@ -82,26 +80,22 @@ function decypherText() {
     for (const [key, value] of Object.entries(vowels)) {
         inputWord = inputWord.replace(new RegExp(value, 'g'), key);
     }
-    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */ 
+    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
     showCypherText(inputWord);
     cleanFields();
 }
 
 // Mostrar texto cifrado
 function showCypherText(word) {
-    if (!word.trim()) {
-        defaultPage();
-    } else {
-        imgMan.style.display = "none";
-        imgCircles.style.display = "none";
-        imgDiamond.style.display = "none";
-        titleResult.style.display = "none";
-        messageResult.style.display = "none";
-        textToCopy.style.display = "block";
-        textToCopy.textContent = word;
-        bttnCopy.style.display = "block";
-        bttnPaste.style.display = "none";
-    }
+
+    showResult.textContent = word;
+    bttnResetPage.disabled = false;
+
+    defaultResult.style.display = "none";
+    showResult.style.display = "block";
+    bttnCopy.style.display = "block";
+    bttnPaste.style.display = "none";
+
 }
 
 // Limpiar campos
@@ -112,16 +106,15 @@ function cleanFields() {
 // Copiar texto al portapapeles
 function copyText() {
 
-    if(textToCopy.textContent == "") {
+    if (showResult.textContent == "") {
         return;
     }
-    
-    const txtCopied = textToCopy.textContent;
+
+    const txtCopied = showResult.textContent;
     navigator.clipboard.writeText(txtCopied)
-        .then(() => toastr.success(`The text ${txtCopied} has been copied to the clipboard.', 'Copied!`),
-        textToCopy.textContent = '', /*Formatear el campo de resultado */
-        bttnPaste.style.display = "block",
-    )
+        .then(() => toastr.success(`The text "${txtCopied}" has been copied to the clipboard.', 'Copied!`),
+            bttnPaste.style.display = "block",
+        )
         .catch(err => {
             toastr.error('Something went wrong!', 'Error');
             console.error('Error copying text: ', err);
@@ -134,13 +127,14 @@ function pasteText() {
     navigator.clipboard.readText()
         .then(text => {
             inputTxt.value = text;
+            bttnPaste.style.display = "block";
         })
         .catch(err => {
             console.error('Failed to read clipboard contents: ', err);
         });
 
-        /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
-        scrollToHeader();
+    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
+    scrollToHeader();
 }
 
 
@@ -159,19 +153,9 @@ function scrollToHeader() {
 }
 
 
-
-
 // Restablecer la página al estado predeterminado
-function defaultPage() {
-    cleanFields();
-    bttnCopy.style.display = "none";
-    bttnPaste.style.display = "none";
-    imgMan.style.display = "block";
-    imgCircles.style.display = "block";
-    imgDiamond.style.display = "block";
-    titleResult.style.display = "block";
-    messageResult.style.display = "block";
+function resetPage() {
+    location.reload();
 }
 
-// Inicializar la página
-defaultPage();
+
