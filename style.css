@@ -204,6 +204,7 @@ header img {
 }
 
 .main__result__button {
+    margin-bottom: 1rem;
     color: var(--primary-color);
     background-color: var(--third-color);
     border-color: var(--primary-color);
@@ -214,6 +215,7 @@ header img {
     width: 73%;
     font: 400 var(--medium-letter-size) "Inter", sans-serif;
     bottom: 1rem;
+    display: none; /*Para no mostrar el boton*/
 }
 
 .main__result__button:hover {

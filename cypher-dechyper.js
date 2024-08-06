@@ -3,7 +3,7 @@ toastr.options = {
     closeButton: false,
     progressBar: false,
     positionClass: "toast-bottom-right",
-    timeOut: "1500",
+    timeOut: "2000",
     showMethod: "slideDown",
 };
 
@@ -27,12 +27,14 @@ const imgCircles = document.getElementById("imgCircles");
 const imgDiamond = document.getElementById("imgDiamond");
 const textToCopy = document.getElementById("textToCopy");
 const bttnCopy = document.getElementById("bttncopy");
+const bttnPaste = document.getElementById("bttnpaste");
 const bttnCypher = document.getElementById("bttnCypher");
 const bttnDecypher = document.getElementById("bttnDecypher");
 const inputTxt = document.getElementById("txtcontent");
 
 // Asignar funciones a eventos
 bttnCopy.addEventListener('click', copyText);
+bttnPaste.addEventListener("click", pasteText);
 bttnCypher.addEventListener("click", cypherText);
 bttnDecypher.addEventListener("click", decypherText);
 
@@ -44,6 +46,10 @@ inputTxt.addEventListener("input", () => {
     bttnDecypher.disabled = !valid;
     spanMessage.classList.toggle("spanError", !valid);
 });
+
+// Agrega el evento click al botón y llama a la función
+// document.getElementById('pasteButton').addEventListener('click', pasteText);
+
 
 // Función de cifrado
 function cypherText() {
@@ -94,6 +100,7 @@ function showCypherText(word) {
         textToCopy.style.display = "block";
         textToCopy.textContent = word;
         bttnCopy.style.display = "block";
+        bttnPaste.style.display = "block";
     }
 }
 
@@ -104,17 +111,35 @@ function cleanFields() {
 
 // Copiar texto al portapapeles
 function copyText() {
-    navigator.clipboard.writeText(textToCopy.textContent)
-        .then(() => toastr.success('The text has been copied to the clipboard.', 'Copied!'))
+
+    if(textToCopy.textContent == "") {
+        return;
+    }
+    
+    const txtCopied = textToCopy.textContent;
+    navigator.clipboard.writeText(txtCopied)
+        .then(() => toastr.success(`The text ${txtCopied} has been copied to the clipboard.', 'Copied!`),
+        textToCopy.textContent = '',
+    )
         .catch(err => {
             toastr.error('Something went wrong!', 'Error');
             console.error('Error copying text: ', err);
         });
 
-    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
-    if (window.innerWidth <= 768) { 
-        header.scrollIntoView({ behavior: 'smooth' });
-    }
+}
+
+
+function pasteText() {
+    navigator.clipboard.readText()
+        .then(text => {
+            inputTxt.value = text;
+        })
+        .catch(err => {
+            console.error('Failed to read clipboard contents: ', err);
+        });
+
+        /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
+        scrollToHeader();
 }
 
 
@@ -125,6 +150,13 @@ function scrollToFooter() {
     }
 }
 
+function scrollToHeader() {
+    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
+    if (window.innerWidth <= 768) { // Puedes ajustar el valor según tus necesidades
+        header.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 
 
 
@@ -132,6 +164,7 @@ function scrollToFooter() {
 function defaultPage() {
     cleanFields();
     bttnCopy.style.display = "none";
+    bttnPaste.style.display = "none";
     imgMan.style.display = "block";
     imgCircles.style.display = "block";
     imgDiamond.style.display = "block";
