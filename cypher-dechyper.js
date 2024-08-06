@@ -100,7 +100,7 @@ function showCypherText(word) {
         textToCopy.style.display = "block";
         textToCopy.textContent = word;
         bttnCopy.style.display = "block";
-        bttnPaste.style.display = "block";
+        bttnPaste.style.display = "none";
     }
 }
 
@@ -119,7 +119,8 @@ function copyText() {
     const txtCopied = textToCopy.textContent;
     navigator.clipboard.writeText(txtCopied)
         .then(() => toastr.success(`The text ${txtCopied} has been copied to the clipboard.', 'Copied!`),
-        textToCopy.textContent = '',
+        textToCopy.textContent = '', /*Formatear el campo de resultado */
+        bttnPaste.style.display = "block",
     )
         .catch(err => {
             toastr.error('Something went wrong!', 'Error');
