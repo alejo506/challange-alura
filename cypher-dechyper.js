@@ -2,7 +2,7 @@
 toastr.options = {
     closeButton: false,
     progressBar: false,
-    positionClass: "toast-bottom-right",
+    positionClass: "toast-top-right",
     timeOut: "2000",
     showMethod: "slideDown",
 };
@@ -38,8 +38,8 @@ bttnDecypher.addEventListener("click", decypherText);
 bttnCopy.addEventListener('click', copyText);
 bttnPaste.addEventListener("click", pasteText);
 bttnResetPage.addEventListener("click", resetPage);
-// Toma lo que se digita para validar
-inputTxt.addEventListener("input", () => {
+
+inputTxt.addEventListener("input", () => { // Toma lo que se digita para validar
     const text = inputTxt.value;
     const valid = /^[a-z \n]*$/.test(text);
 
@@ -85,7 +85,7 @@ function decypherText() {
     cleanFields();
 }
 
-// Mostrar texto cifrado
+// Funcion mostrar el texto cifrado
 function showCypherText(word) {
 
     showResult.textContent = word;
@@ -98,12 +98,12 @@ function showCypherText(word) {
 
 }
 
-// Limpiar campos
+// Funcion de Limpiar campos
 function cleanFields() {
     inputTxt.value = '';
 }
 
-// Copiar texto al portapapeles
+// Funcion de copiar texto al portapapeles
 function copyText() {
 
     if (showResult.textContent == "") {
@@ -113,7 +113,10 @@ function copyText() {
     const txtCopied = showResult.textContent;
     navigator.clipboard.writeText(txtCopied)
         .then(() => toastr.success(`The text "${txtCopied}" has been copied to the clipboard.', 'Copied!`),
+            showResult.textContent = "",
+            bttnCopy.style.display = "none",
             bttnPaste.style.display = "block",
+
         )
         .catch(err => {
             toastr.error('Something went wrong!', 'Error');
@@ -123,30 +126,29 @@ function copyText() {
 }
 
 
+// Funcion de pegar texto al textArea o input
 function pasteText() {
     navigator.clipboard.readText()
         .then(text => {
             inputTxt.value = text;
-            bttnPaste.style.display = "block";
         })
         .catch(err => {
             console.error('Failed to read clipboard contents: ', err);
         });
 
-    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
     scrollToHeader();
 }
 
 
+/* Desplazamiento hacia el footer si la dimension de pantalla es menor o igual a 768 */
 function scrollToFooter() {
-    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
     if (window.innerWidth <= 768) { // Puedes ajustar el valor según tus necesidades
         footer.scrollIntoView({ behavior: 'smooth' });
     }
 }
 
+/* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
 function scrollToHeader() {
-    /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
     if (window.innerWidth <= 768) { // Puedes ajustar el valor según tus necesidades
         header.scrollIntoView({ behavior: 'smooth' });
     }
