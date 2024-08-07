@@ -2,10 +2,12 @@
 toastr.options = {
     closeButton: false,
     progressBar: false,
-    positionClass: "toast-top-right",
+    positionClass: window.innerWidth <= 768 ? "toast-bottom-right" : "toast-top-right",
     timeOut: "2000",
     showMethod: "slideDown",
 };
+
+
 
 // Mapa de vocales para cifrado
 const vowels = {
@@ -111,8 +113,10 @@ function copyText() {
     }
 
     const txtCopied = showResult.textContent;
+
+
     navigator.clipboard.writeText(txtCopied)
-        .then(() => toastr.success(`The text "${txtCopied}" has been copied to the clipboard.', 'Copied!`),
+    .then(() => toastr.success(`The text "${txtCopied}" has been copied to the clipboard.', 'Copied!`),
             showResult.textContent = "",
             bttnCopy.style.display = "none",
             bttnPaste.style.display = "block",
