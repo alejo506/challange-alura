@@ -140,24 +140,33 @@ function pasteText() {
 }
 
 
+
+function scrollToElement(element) {
+    if (window.innerWidth <= 768) { // Ajusta el valor según sea necesario
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+
 /* Desplazamiento hacia el footer si la dimension de pantalla es menor o igual a 768 */
 function scrollToFooter() {
-    if (window.innerWidth <= 768) { // Puedes ajustar el valor según tus necesidades
-        footer.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToElement(footer);
 }
 
 /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
 function scrollToHeader() {
-    if (window.innerWidth <= 768) { // Puedes ajustar el valor según tus necesidades
-        header.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToElement(header);
 }
+
 
 
 // Restablecer la página al estado predeterminado
 function resetPage() {
-    location.reload();
+    scrollToHeader();
+    //Esperar 3 milisegundos antes de recargar la pagina
+    setTimeout(() => {
+        location.reload();
+    }, 500); 
 }
 
 
