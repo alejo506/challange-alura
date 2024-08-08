@@ -53,39 +53,61 @@ inputTxt.addEventListener("input", () => { // Toma lo que se digita para validar
 
 // Función de cifrado
 function cypherText() {
-    const inputWord = inputTxt.value;
-    if (!inputWord) {
-        console.log("Digite una palabra");
-        toastr.warning('The input cannot be empty!', 'Warning');
-        return;
+
+    try {
+
+        const inputWord = inputTxt.value;
+
+        if (!validateFields(inputWord)) {
+            return;
+        }
+
+        const cypherArray = Array.from(inputWord).map(letter =>
+            vowels[letter] || letter
+        );
+        const cypherWord = cypherArray.join("");
+
+        scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
+        showCypherText(cypherWord);
+        cleanFields();
+    } catch (error) {
+        console.error("Error during cypherText execution:", error);
+        toastr.error('An error occurred while processing the text.', 'Error');
     }
-
-    const cypherArray = Array.from(inputWord).map(letter =>
-        vowels[letter] || letter
-    );
-    const cypherWord = cypherArray.join("");
-
-    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
-    showCypherText(cypherWord);
-    cleanFields();
 }
 
 // Función de descifrado
 function decypherText() {
-    let inputWord = inputTxt.value;
 
-    if (!inputWord) {
-        console.log("Digite una palabra");
-        toastr.warning('The input cannot be empty!', 'Warning');
-        return;
+    try {
+        let inputWord = inputTxt.value;
+
+        if (!validateFields(inputWord)) {
+            return;
+        }
+
+        for (const [key, value] of Object.entries(vowels)) {
+            inputWord = inputWord.replace(new RegExp(value, 'g'), key);
+        }
+        scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
+        showCypherText(inputWord);
+        cleanFields();
+    } catch (error) {
+        console.error("Error during decypherText execution:", error);
+        toastr.error('An error occurred while processing the text.', 'Error');
     }
-    for (const [key, value] of Object.entries(vowels)) {
-        inputWord = inputWord.replace(new RegExp(value, 'g'), key);
-    }
-    scrollToFooter(); /* Desplazamiento hacia el header si la dimension de pantalla es menor o igual a 768 */
-    showCypherText(inputWord);
-    cleanFields();
 }
+
+
+function validateFields(inputWord) {
+
+    if (!inputWord || inputWord.trim().length === 0) {
+        toastr.warning('The input cannot be empty!', 'Warning');
+        return false;
+    }
+    return true;
+}
+
 
 // Funcion mostrar el texto cifrado
 function showCypherText(word) {
@@ -116,7 +138,7 @@ function copyText() {
 
 
     navigator.clipboard.writeText(txtCopied)
-    .then(() => toastr.success(`The text "${txtCopied}" has been copied to the clipboard.', 'Copied!`),
+        .then(() => toastr.success(`The text "${txtCopied}" has been copied to the clipboard.', 'Copied!`),
             showResult.textContent = "",
             bttnCopy.style.display = "none",
             bttnPaste.style.display = "block",
@@ -170,7 +192,7 @@ function resetPage() {
     //Esperar 3 milisegundos antes de recargar la pagina
     setTimeout(() => {
         location.reload();
-    }, 500); 
+    }, 500);
 }
 
 
